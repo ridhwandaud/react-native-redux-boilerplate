@@ -5,17 +5,27 @@ import { emailChanged, passwordChanged, loginUser } from '../_actions';
 import { Card, CardSection, Input, Button, Spinner } from '../components/common';
 
 class Login extends Component {
-  onEmailChange(text) {
-    this.props.emailChanged(text);
-  }
-  onPasswordChange(text) {
-    this.props.passwordChanged(text);
+
+  static navigationOptions = {
+    title: 'Login',
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {email: '', password: '' };
   }
 
   onButtonPress() {
-    const { email, password } = this.props;
+    const { email, password } = this.state;
 
     this.props.loginUser({ email, password });
+  }
+
+  componentDidUpdate(){
+    console.log('go to login page');
+    if (this.props.isLoggedIn){
+      console.log('go to login page');
+    }
   }
 
   renderButton(){
@@ -36,7 +46,7 @@ class Login extends Component {
           <Input
             label="Email"
             placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
+            onChangeText={(text) => this.setState({ email: text})}
             value={this.props.email}
           />
         </CardSection>
@@ -46,7 +56,7 @@ class Login extends Component {
             secureTextEntry
             label="Password"
             placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
+            onChangeText={(text) => this.setState({ password: text})}
             value={this.props.password}
           />
         </CardSection>

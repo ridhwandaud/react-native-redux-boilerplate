@@ -6,6 +6,7 @@ import {
 	LOGIN_USER,
 	USER_LOGOUT
 } from '../_actions/types';
+import { REHYDRATE } from 'redux-persist/constants';
 
 const INITIAL_STATE = { 
 	loading: false,
@@ -16,19 +17,26 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 	const { type, payload } = action;
 	switch (type) {
-		case EMAIL_CHANGED:
-			return { ...state, email: payload };
-		case PASSWORD_CHANGED:
-			return { ...state, password: payload };
 		case LOGIN_USER:
-			return { ...state, loading: true, error: '' };	
+			return { ...state, error: '', loading: true, error: '' };	
 		case LOGIN_USER_SUCCESS:
 			return { ...state, ...INITIAL_STATE, ...payload, isLoggedIn: true };
 		case LOGIN_USER_FAIL:
 			return { ...state, error: 'Authentication Failed.', password: '', loading:false };
 		case USER_LOGOUT:
 			console.log('Logging out');
-			return { ...INITIAL_STATE };		
+			return { ...INITIAL_STATE };	
+		case REHYDRATE:
+		    if (!payload.LoginReducer) {
+		      return state;
+		    }
+		    /* rehydrated data */
+		    const { isLoggedIn } = payload.LoginReducer;
+		    return {
+		      ...INITIAL_STATE,
+		      isLoggedIn,
+		    };
+				
 		default:
 		  return state;
 	}

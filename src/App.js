@@ -6,7 +6,7 @@ import Router from './containers/Router';
 import configureStore from './store';
 import firebase from 'firebase';
 
-const WHITELISTED_REDUCER = ['WalletReducer', 'AuthReducer', 'TransactionsReducer', 'CategoryReducer'];
+const WHITELISTED_REDUCER = ['LoginReducer'];
 
 class App extends Component {
 
