@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Text } from 'react-native';
 import { emailChanged, passwordChanged, loginUser } from '../_actions';
 import { Card, CardSection, Input, Button, Spinner } from '../components/common';
+import * as Animatable from 'react-native-animatable';
 
 class Login extends Component {
 
@@ -61,9 +62,17 @@ class Login extends Component {
           />
         </CardSection>
 
-        <Text style={styles.errorTextStyle}>
+        <Text style={styles.errorTextStyle} animation="zoomInUp">
           {this.props.error}
         </Text>
+
+        <Animatable.Text
+          animation={'fadeIn'}
+          duration={600}
+          delay={400}
+        >
+          Up and down you go
+        </Animatable.Text>
 
         <CardSection>
           {this.renderButton()}

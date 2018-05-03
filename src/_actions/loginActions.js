@@ -8,11 +8,23 @@ import {
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-    if(email == 'Demo@example.com'&& password == 'password'){
-      dispatch({ type: LOGIN_USER_SUCCESS });
-    }else {
-      dispatch({ type: LOGIN_USER_FAIL });
-    }
+
+    // setTimeout(() => {
+    //   if(email == 'demo'&& password == 'password'){
+    //   dispatch({ type: LOGIN_USER_SUCCESS });
+    // }else {
+    //   dispatch({ type: LOGIN_USER_FAIL });
+    // }, 1500);
+
+   setTimeout(() => {
+    dispatch({ type: LOGIN_USER_FAIL });
+    }, 2000)
+
+    // if(email == 'Demo@example.com'&& password == 'password'){
+    //   dispatch({ type: LOGIN_USER_SUCCESS });
+    // }else {
+    //   dispatch({ type: LOGIN_USER_FAIL });
+    // }
   };
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Login from './Login';
+import Auth from './LoginScreen';
 
 class HomeScreen extends React.Component {
   render() {
@@ -17,11 +17,14 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default StackNavigator({
-  Login: {
-    screen: Login,
+export default StackNavigator(
+{
+  Auth: {
+    screen: Auth,
   },
   HomeScreen: {
     screen: HomeScreen,
   },
-});
+},
+  { headerMode: 'screen' },
+);
