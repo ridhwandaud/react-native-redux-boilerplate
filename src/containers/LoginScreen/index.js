@@ -59,11 +59,6 @@ export default class AuthScreen extends Component {
     header: null,
   }
 
-  _simulateLogin = (username, password) => {
-    this.setState({ isLoading: true })
-    setTimeout(() => this.setState({ isLoggedIn: true, isLoading: false }), 1000)
-  }
-
   _simulateSignup = (username, password, fullName) => {
     this.setState({ isLoading: true })
     setTimeout(() => this.setState({ isLoggedIn: true, isLoading: false }), 1000)
@@ -134,7 +129,7 @@ export default class AuthScreen extends Component {
             <LoginForm
               ref={(ref) => this.formRef = ref}
               onSignupLinkPress={() => this._setVisibleForm('SIGNUP')}
-              onLoginPress={this._simulateLogin}
+              onLoginPress={login}
               isLoading={isLoading}
             />
           )}

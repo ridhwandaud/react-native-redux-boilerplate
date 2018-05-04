@@ -95,4 +95,4 @@ const mapStateToProps = ({ LoginReducer }) => {
   return { email, password, error, loading };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(Login);
+export default connect(mapStateToProps, { loginUser })(Login);

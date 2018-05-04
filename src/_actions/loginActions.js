@@ -2,10 +2,11 @@ import firebase from 'firebase';
 import { 
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
-  LOGIN_USER
+  LOGIN_USER,
+  LOGOUT_USER
 } from './types';
 
-export const loginUser = ({ email, password }) => {
+export const loginUser = () => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
 
@@ -17,7 +18,7 @@ export const loginUser = ({ email, password }) => {
     // }, 1500);
 
    setTimeout(() => {
-    dispatch({ type: LOGIN_USER_FAIL });
+    dispatch({ type: LOGIN_USER_SUCCESS });
     }, 2000)
 
     // if(email == 'Demo@example.com'&& password == 'password'){
@@ -25,6 +26,16 @@ export const loginUser = ({ email, password }) => {
     // }else {
     //   dispatch({ type: LOGIN_USER_FAIL });
     // }
+  };
+};
+
+export const logoutUser = () => {
+  return (dispatch) => {
+    dispatch({ type: LOGOUT_USER });
+
+   // setTimeout(() => {
+   //  dispatch({ type: LOGOUT_USER_FAIL });
+   //  }, 2000)
   };
 };
 

@@ -33,7 +33,8 @@ export default class LoginForm extends Component {
   render () {
     const { email, password } = this.state
     const { isLoading, onSignupLinkPress, onLoginPress } = this.props
-    const isValid = email !== '' && password !== ''
+    const isValid = email !== '' && password !== '';
+    console.log('onLoginPress',onLoginPress);
     return (
       <View style={styles.container}>
         <View style={styles.form} ref={(ref) => { this.formRef = ref }}>
@@ -65,7 +66,7 @@ export default class LoginForm extends Component {
         <View style={styles.footer}>
           <View ref={(ref) => this.buttonRef = ref} animation={'bounceIn'} duration={600} delay={400}>
             <CustomButton
-              onPress={() => onLoginPress(email, password)}
+              onPress={() => onLoginPress()}
               isEnabled={isValid}
               isLoading={isLoading}
               buttonStyle={styles.loginButton}

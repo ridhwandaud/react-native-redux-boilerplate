@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Auth from './LoginScreen';
+import Start from './Start';
 
 class HomeScreen extends React.Component {
   render() {
@@ -19,8 +19,8 @@ class HomeScreen extends React.Component {
 
 export default StackNavigator(
 {
-  Auth: {
-    screen: Auth,
+  Start: {
+    screen: Start,
   },
   HomeScreen: {
     screen: HomeScreen,
