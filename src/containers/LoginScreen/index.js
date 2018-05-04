@@ -55,11 +55,6 @@ export default class AuthScreen extends Component {
     visibleForm: null // Can be: null | SIGNUP | LOGIN
   }
 
-  _simulateSignup = (username, password, fullName) => {
-    this.setState({ isLoading: true })
-    setTimeout(() => this.setState({ isLoggedIn: true, isLoading: false }), 1000)
-  }
-
   componentWillUpdate (nextProps) {
     // If the user has logged/signed up succesfully start the hide animation
     if (!this.props.isLoggedIn && nextProps.isLoggedIn) {
@@ -117,7 +112,7 @@ export default class AuthScreen extends Component {
             <SignupForm
               ref={(ref) => this.formRef = ref}
               onLoginLinkPress={() => this._setVisibleForm('LOGIN')}
-              onSignupPress={this._simulateSignup}
+              onSignupPress={signup}
               isLoading={isLoading}
             />
           )}

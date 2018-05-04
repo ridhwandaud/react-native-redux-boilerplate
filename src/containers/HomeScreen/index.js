@@ -13,7 +13,6 @@ class HomeScreen extends Component {
   }
 
   render () {
-    console.log('logout',this.props.logout);
     return (
       <View style={styles.container}>
         <CustomButton

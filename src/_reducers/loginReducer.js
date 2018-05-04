@@ -1,8 +1,10 @@
-import { 
+import {
 	LOGIN_USER_SUCCESS,
 	LOGIN_USER_FAIL,
 	LOGIN_USER,
-	LOGOUT_USER
+	LOGOUT_USER,
+	SIGNUP_USER,
+  	SIGNUP_USER_SUCCESS
 } from '../_actions/types';
 import { REHYDRATE } from 'redux-persist/constants';
 
@@ -21,6 +23,10 @@ export default (state = INITIAL_STATE, action) => {
 			return { ...state, ...INITIAL_STATE, ...payload, isLoggedIn: true, loading: false };
 		case LOGIN_USER_FAIL:
 			return { ...state, error: 'Authentication Failed.', password: '', loading:false };
+		case SIGNUP_USER:
+			return { ...state, error: '', loading: true, error: '' };	
+		case SIGNUP_USER_SUCCESS:
+			return { ...state, ...INITIAL_STATE, ...payload, isLoggedIn: true, loading: false };
 		case LOGOUT_USER:
 			console.log('Logging out');
 			return { ...INITIAL_STATE, isLoggedIn: false };	

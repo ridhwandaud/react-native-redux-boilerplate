@@ -3,12 +3,48 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGIN_USER,
-  LOGOUT_USER
+  LOGOUT_USER,
+  SIGNUP_USER,
+  SIGNUP_USER_SUCCESS
 } from './types';
 
-export const loginUser = () => {
+export const loginUser = ({email,passsword}) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
+    console.log('email', email);
+    console.log('password', password);
+    // setTimeout(() => {
+    //   if(email == 'demo'&& password == 'password'){
+    //   dispatch({ type: LOGIN_USER_SUCCESS });
+    // }else {
+    //   dispatch({ type: LOGIN_USER_FAIL });
+    // }, 1500);
+
+    //firebase.auth().signInWithEmailAndPassword(email, password)
+      //.then(user => loginUserSuccess(dispatch, user))
+
+   // setTimeout(() => {
+   //  dispatch({ type: LOGIN_USER_SUCCESS });
+   //  }, 2000)
+
+    // if(email == 'Demo@example.com'&& password == 'password'){
+    //   dispatch({ type: LOGIN_USER_SUCCESS });
+    // }else {
+    //   dispatch({ type: LOGIN_USER_FAIL });
+    // }
+  };
+};
+
+const loginUserSuccess = (dispatch, user) => {
+  dispatch({
+    type: LOGIN_USER_SUCCESS,
+    payload: user
+  });
+};
+
+export const signupUser = (email,passsword,fullname) => {
+  return (dispatch) => {
+    dispatch({ type: SIGNUP_USER });
 
     // setTimeout(() => {
     //   if(email == 'demo'&& password == 'password'){
@@ -18,7 +54,7 @@ export const loginUser = () => {
     // }, 1500);
 
    setTimeout(() => {
-    dispatch({ type: LOGIN_USER_SUCCESS });
+    dispatch({ type: SIGNUP_USER_SUCCESS });
     }, 2000)
 
     // if(email == 'Demo@example.com'&& password == 'password'){
@@ -39,17 +75,3 @@ export const logoutUser = () => {
   };
 };
 
-const loginUserFail = (dispatch) => {
-  dispatch({
-    type: LOGIN_USER_FAIL
-  });
-};
-
-const loginUserSuccess = (dispatch, user) => {
-  dispatch({
-    type: LOGIN_USER_SUCCESS,
-    payload: user
-  });
-
-  console.log('success');
-};
