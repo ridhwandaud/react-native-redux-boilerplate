@@ -55,10 +55,6 @@ export default class AuthScreen extends Component {
     visibleForm: null // Can be: null | SIGNUP | LOGIN
   }
 
-  static navigationOptions = {
-    header: null,
-  }
-
   _simulateSignup = (username, password, fullName) => {
     this.setState({ isLoading: true })
     setTimeout(() => this.setState({ isLoggedIn: true, isLoading: false }), 1000)

@@ -6,6 +6,11 @@ import HomeScreen from './HomeScreen';
 import { loginUser, logoutUser } from '../_actions';
 
 class Start extends Component{
+
+	 static navigationOptions = {
+   	 	header: null,
+  	}
+
 	render(){
 		const { login, loginUser, logoutUser } = this.props;
 		if (login.isLoggedIn) {
