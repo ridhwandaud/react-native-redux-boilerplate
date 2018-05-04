@@ -5,17 +5,17 @@ import { Platform, View, TouchableNativeFeedback, TouchableOpacity } from 'react
 const IS_ANDROID = Platform.OS === 'android'
 const IS_RIPPLE_EFFECT_SUPPORTED = Platform.Version >= 21 && IS_ANDROID
 
-const TouchableView = ({ isRippleDisabled, rippleColor, children, style, ...props }) => {
+const TouchableView = ({ isRippleDisabled, rippleColor, children, style, disabled, ...props }) => {
   if (IS_RIPPLE_EFFECT_SUPPORTED && !isRippleDisabled) {
     const background = TouchableNativeFeedback.Ripple('#FFF')
     return (
-      <TouchableNativeFeedback {...props} background={background}>
+      <TouchableNativeFeedback {...props} background={background} disabled={disabled}>
         <View style={style}>{children}</View>
       </TouchableNativeFeedback>
     )
   } else {
     return (
-      <TouchableOpacity {...props} style={style}>
+      <TouchableOpacity {...props} style={style} disabled={disabled}> 
         {children}
       </TouchableOpacity>
     )
@@ -27,6 +27,10 @@ TouchableView.propTypes = {
   rippleColor: PropTypes.string,
   children: PropTypes.any,
   style: View.propTypes.style
+}
+
+TouchableView.defaultProps = {
+  disabled: false,
 }
 
 export default TouchableView

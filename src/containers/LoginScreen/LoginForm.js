@@ -34,7 +34,6 @@ export default class LoginForm extends Component {
     const { email, password } = this.state
     const { isLoading, onSignupLinkPress, onLoginPress } = this.props
     const isValid = email !== '' && password !== '';
-    console.log('onLoginPress',onLoginPress);
     return (
       <View style={styles.container}>
         <View style={styles.form} ref={(ref) => { this.formRef = ref }}>
@@ -70,7 +69,7 @@ export default class LoginForm extends Component {
               isEnabled={isValid}
               isLoading={isLoading}
               buttonStyle={styles.loginButton}
-              textStyle={styles.loginButtonText}
+              textStyle={isValid ? styles.loginButtonText : styles.loginButtonTextDisabled }
               text={'Log In'}
             />
           </View>
@@ -106,6 +105,10 @@ const styles = StyleSheet.create({
   },
   loginButtonText: {
     color: '#3E464D',
+    fontWeight: 'bold'
+  },
+  loginButtonTextDisabled: {
+    color: 'lightgrey',
     fontWeight: 'bold'
   },
   signupLink: {

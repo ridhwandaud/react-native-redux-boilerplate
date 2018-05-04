@@ -79,6 +79,7 @@ export default class SignupForm extends Component {
               isLoading={isLoading}
               buttonStyle={styles.createAccountButton}
               textStyle={styles.createAccountButtonText}
+              textStyle={isValid ? styles.createAccountButtonText : styles.createAccountButtonTextDisabled }
               text={'Create Account'}
             />
           </View>
@@ -114,6 +115,10 @@ const styles = StyleSheet.create({
   },
   createAccountButtonText: {
     color: '#3E464D',
+    fontWeight: 'bold'
+  },
+  createAccountButtonTextDisabled: {
+    color: 'lightgrey',
     fontWeight: 'bold'
   },
   loginLink: {
