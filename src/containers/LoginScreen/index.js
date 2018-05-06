@@ -48,6 +48,7 @@ export default class AuthScreen extends Component {
     isLoading: PropTypes.bool.isRequired,
     signup: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
+    error: PropTypes.string.isRequired,
     onLoginAnimationCompleted: PropTypes.func.isRequired // Called at the end of a succesfull login/signup animation
   }
 
@@ -83,7 +84,7 @@ export default class AuthScreen extends Component {
   }
 
   render () {
-    const { isLoggedIn, isLoading, signup, login } = this.props
+    const { isLoggedIn, isLoading, signup, login, error } = this.props
     const { visibleForm } = this.state
     // The following style is responsible of the "bounce-up from bottom" animation of the form
     const formStyle = (!visibleForm) ? { height: 0 } : { marginTop: 40 }
@@ -114,6 +115,7 @@ export default class AuthScreen extends Component {
               onLoginLinkPress={() => this._setVisibleForm('LOGIN')}
               onSignupPress={signup}
               isLoading={isLoading}
+              error={error}
             />
           )}
           {(visibleForm === 'LOGIN') && (
@@ -122,6 +124,7 @@ export default class AuthScreen extends Component {
               onSignupLinkPress={() => this._setVisibleForm('SIGNUP')}
               onLoginPress={login}
               isLoading={isLoading}
+              error={error}
             />
           )}
         </KeyboardAvoidingView>

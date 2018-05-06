@@ -22,10 +22,11 @@ class Start extends Component{
 	    } else {
 	      return (
 	        <AuthScreen
-	          login={() => loginUser()}
-	          signup={() => signupUser()}
+	          login={loginUser}
+	          signup={logoutUser}
 	          isLoading={login.loading}
 	          isLoggedIn={login.isLoggedIn}
+	          error={login.error}
 	          onLoginAnimationCompleted={() => this.setState({ isAppReady: true })}
 	        />
 	      )

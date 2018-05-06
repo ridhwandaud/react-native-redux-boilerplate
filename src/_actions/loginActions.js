@@ -8,30 +8,18 @@ import {
   SIGNUP_USER_SUCCESS
 } from './types';
 
-export const loginUser = () => {
+export const loginUser = (email, password) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
-    // console.log('email', email);
-    // console.log('password', password);
-    // setTimeout(() => {
-    //   if(email == 'demo'&& password == 'password'){
-    //   dispatch({ type: LOGIN_USER_SUCCESS });
-    // }else {
-    //   dispatch({ type: LOGIN_USER_FAIL });
-    // }, 1500);
+    console.log('email', email);
+    console.log('password', password);
 
-    //firebase.auth().signInWithEmailAndPassword(email, password)
-      //.then(user => loginUserSuccess(dispatch, user))
-
-   setTimeout(() => {
-    dispatch({ type: LOGIN_USER_SUCCESS });
-    }, 2000)
-
-    // if(email == 'Demo@example.com'&& password == 'password'){
-    //   dispatch({ type: LOGIN_USER_SUCCESS });
-    // }else {
-    //   dispatch({ type: LOGIN_USER_FAIL });
-    // }
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(user => loginUserSuccess(dispatch, user))
+      // .catch((error)=>{
+      //   console.log('login failed', error);
+      //   dispatch({ type: LOGIN_USER_FAIL })
+      // });
   };
 };
 

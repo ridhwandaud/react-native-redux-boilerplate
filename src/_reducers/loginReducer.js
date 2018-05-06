@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 	loading: false,
 	isLoggedIn: false,
 	user: null,
+	error: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -20,9 +21,9 @@ export default (state = INITIAL_STATE, action) => {
 		case LOGIN_USER:
 			return { ...state, error: '', loading: true, error: '' };	
 		case LOGIN_USER_SUCCESS:
-			return { ...state, ...INITIAL_STATE, ...payload, isLoggedIn: true, loading: false };
+			return { ...state, ...INITIAL_STATE, user: action.payload, isLoggedIn: true, loading: false};
 		case LOGIN_USER_FAIL:
-			return { ...state, error: 'Authentication Failed.', password: '', loading:false };
+			return { ...state, error: 'We do not recognize the email or password', password: '', loading:false };
 		case SIGNUP_USER:
 			return { ...state, error: '', loading: true, error: '' };	
 		case SIGNUP_USER_SUCCESS:

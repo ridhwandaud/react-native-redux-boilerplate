@@ -17,7 +17,6 @@ export default class LoginForm extends Component {
   state = {
     email: '',
     password: '',
-    fullName: ''
   }
 
   hideForm = async () => {
@@ -30,9 +29,17 @@ export default class LoginForm extends Component {
     }
   }
 
+  login = () => {
+    const { email, password } = this.state;
+    const { onLoginPress } = this.props;
+    console.log('login', onLoginPress);
+    onLoginPress(email,password);
+
+  }
+
   render () {
     const { email, password } = this.state
-    const { isLoading, onSignupLinkPress, onLoginPress } = this.props
+    const { isLoading, onSignupLinkPress, onLoginPress, error } = this.props
     const isValid = email !== '' && password !== '';
     return (
       <View style={styles.container}>
@@ -65,7 +72,7 @@ export default class LoginForm extends Component {
         <View style={styles.footer}>
           <View ref={(ref) => this.buttonRef = ref} animation={'bounceIn'} duration={600} delay={400}>
             <CustomButton
-              onPress={() => onLoginPress()}
+              onPress={() => this.login()}
               isEnabled={isValid}
               isLoading={isLoading}
               buttonStyle={styles.loginButton}
@@ -73,6 +80,7 @@ export default class LoginForm extends Component {
               text={'Log In'}
             />
           </View>
+          { /*error && alert(this.props.error)*/}
           <Text
             ref={(ref) => this.linkRef = ref}
             style={styles.signupLink}
@@ -113,6 +121,11 @@ const styles = StyleSheet.create({
   },
   signupLink: {
     color: 'rgba(255,255,255,0.6)',
+    alignSelf: 'center',
+    padding: 20
+  },
+  error: {
+    color: '#ef5350',
     alignSelf: 'center',
     padding: 20
   }
