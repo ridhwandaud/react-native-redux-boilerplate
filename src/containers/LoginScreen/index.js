@@ -48,7 +48,7 @@ export default class AuthScreen extends Component {
     isLoading: PropTypes.bool.isRequired,
     signup: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
-    error: PropTypes.string.isRequired,
+    error: PropTypes.bool.isRequired,
     onLoginAnimationCompleted: PropTypes.func.isRequired // Called at the end of a succesfull login/signup animation
   }
 
@@ -84,10 +84,13 @@ export default class AuthScreen extends Component {
   }
 
   render () {
-    const { isLoggedIn, isLoading, signup, login, error } = this.props
-    const { visibleForm } = this.state
+    const { isLoggedIn, isLoading, signup, login, error } = this.props;
+    const { visibleForm } = this.state;
     // The following style is responsible of the "bounce-up from bottom" animation of the form
-    const formStyle = (!visibleForm) ? { height: 0 } : { marginTop: 40 }
+    const formStyle = (!visibleForm) ? { height: 0 } : { marginTop: 40 };
+
+    console.log(isLoggedIn);
+
     return (
       <View style={styles.container}>
         <Image

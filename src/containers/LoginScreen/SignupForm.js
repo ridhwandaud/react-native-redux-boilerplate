@@ -30,6 +30,15 @@ export default class SignupForm extends Component {
     }
   }
 
+  signup = () => {
+    const { email, password, fullName } = this.state;
+    const { onSignupPress } = this.props;
+    console.log(email);
+    console.log(password);
+    console.log('signup', onSignupPress);
+    onSignupPress(email,password,fullName);
+  }
+
   render () {
     const { email, password, fullName } = this.state
     const { isLoading, onLoginLinkPress, onSignupPress } = this.props
@@ -74,7 +83,7 @@ export default class SignupForm extends Component {
         <View style={styles.footer}>
           <View ref={(ref) => this.buttonRef = ref} animation={'bounceIn'} duration={600} delay={400}>
             <CustomButton
-              onPress={() => onSignupPress(email, password, fullName)}
+              onPress={() => this.signup()}
               isEnabled={isValid}
               isLoading={isLoading}
               buttonStyle={styles.createAccountButton}

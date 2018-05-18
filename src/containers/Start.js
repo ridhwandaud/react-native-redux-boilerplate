@@ -23,10 +23,10 @@ class Start extends Component{
 	      return (
 	        <AuthScreen
 	          login={loginUser}
-	          signup={logoutUser}
+	          signup={signupUser}
 	          isLoading={login.loading}
 	          isLoggedIn={login.isLoggedIn}
-	          error={login.error}
+	          error={login.loggedInError}
 	          onLoginAnimationCompleted={() => this.setState({ isAppReady: true })}
 	        />
 	      )

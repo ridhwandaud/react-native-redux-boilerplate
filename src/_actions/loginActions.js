@@ -30,36 +30,23 @@ const loginUserSuccess = (dispatch, user) => {
   });
 };
 
-export const signupUser = (email,passsword,fullname) => {
+export const signupUser = (email,password,fullname) => {
   return (dispatch) => {
     dispatch({ type: SIGNUP_USER });
-
-    // setTimeout(() => {
-    //   if(email == 'demo'&& password == 'password'){
-    //   dispatch({ type: LOGIN_USER_SUCCESS });
-    // }else {
-    //   dispatch({ type: LOGIN_USER_FAIL });
-    // }, 1500);
-
-   setTimeout(() => {
-    dispatch({ type: SIGNUP_USER_SUCCESS });
-    }, 2000)
-
-    // if(email == 'Demo@example.com'&& password == 'password'){
-    //   dispatch({ type: LOGIN_USER_SUCCESS });
-    // }else {
-    //   dispatch({ type: LOGIN_USER_FAIL });
-    // }
+    console.log('email', email);
+    console.log('password', password);
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(user => loginUserSuccess(dispatch, user))
+      .catch((error)=>{
+        console.log('login failed', error.message);
+        dispatch({ type: LOGIN_USER_FAIL })
+      });
   };
 };
 
 export const logoutUser = () => {
   return (dispatch) => {
     dispatch({ type: LOGOUT_USER });
-
-   // setTimeout(() => {
-   //  dispatch({ type: LOGOUT_USER_FAIL });
-   //  }, 2000)
   };
 };
 

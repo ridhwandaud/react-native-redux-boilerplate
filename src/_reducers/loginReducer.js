@@ -12,22 +12,22 @@ const INITIAL_STATE = {
 	loading: false,
 	isLoggedIn: false,
 	user: null,
-	error: '',
+	loggedInError: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
 	const { type, payload } = action;
 	switch (type) {
 		case LOGIN_USER:
-			return { ...state, error: '', loading: true, error: '' };	
+			return { ...state, loggedInError: false, loading: true, isLoggedIn: false };	
 		case LOGIN_USER_SUCCESS:
-			return { ...state, ...INITIAL_STATE, user: action.payload, isLoggedIn: true, loading: false};
+			return { ...state, ...INITIAL_STATE, user: action.payload, isLoggedIn: true, loading: false, loggedInError: false};
 		case LOGIN_USER_FAIL:
-			return { ...state, error: 'We do not recognize the email or password', password: '', loading:false };
+			return { ...state, loggedInError: true, password: '', loading:false };
 		case SIGNUP_USER:
 			return { ...state, error: '', loading: true, error: '' };	
 		case SIGNUP_USER_SUCCESS:
-			return { ...state, ...INITIAL_STATE, ...payload, isLoggedIn: true, loading: false };
+			return { ...state, ...INITIAL_STATE, user: action.payload, isLoggedIn: true, loading: false };
 		case LOGOUT_USER:
 			console.log('Logging out');
 			return { ...INITIAL_STATE, isLoggedIn: false };	

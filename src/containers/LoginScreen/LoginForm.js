@@ -24,7 +24,8 @@ export default class LoginForm extends Component {
       await Promise.all([
         this.buttonRef.zoomOut(200),
         this.formRef.fadeOut(300),
-        this.linkRef.fadeOut(300)
+        this.linkRef.fadeOut(300),
+        this.errorRef.fadeOut(350)
       ])
     }
   }
@@ -38,7 +39,7 @@ export default class LoginForm extends Component {
   }
 
   render () {
-    const { email, password } = this.state
+    const { email, password, showError } = this.state
     const { isLoading, onSignupLinkPress, onLoginPress, error } = this.props
     const isValid = email !== '' && password !== '';
     return (
@@ -80,7 +81,16 @@ export default class LoginForm extends Component {
               text={'Log In'}
             />
           </View>
-          { /*error && alert(this.props.error)*/}
+          { error && 
+            <View 
+              style={styles.error}
+              ref={(ref) => this.errorRef = ref}
+            >
+              <Text style={styles.errorText}>
+                We do not recognize the email or password
+              </Text>  
+            </View>
+          }
           <Text
             ref={(ref) => this.linkRef = ref}
             style={styles.signupLink}
@@ -105,7 +115,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   footer: {
-    height: 100,
+    height: 150,
     justifyContent: 'center'
   },
   loginButton: {
@@ -125,8 +135,12 @@ const styles = StyleSheet.create({
     padding: 20
   },
   error: {
-    color: '#ef5350',
+    marginTop: 10,
+    backgroundColor:'#ef5350',
     alignSelf: 'center',
-    padding: 20
+    padding: 10,
+  },
+  errorText: {
+    color: 'white',
   }
 })
