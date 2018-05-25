@@ -17,6 +17,7 @@ export default class LoginForm extends Component {
   state = {
     email: '',
     password: '',
+    showError: false,
   }
 
   hideForm = async () => {
@@ -33,9 +34,11 @@ export default class LoginForm extends Component {
   login = () => {
     const { email, password } = this.state;
     const { onLoginPress } = this.props;
-    console.log('login', onLoginPress);
-    onLoginPress(email,password);
-    this.props.navigation.navigate('App');
+    onLoginPress({ email,password }, () => {
+      this.props.navigation.navigate('App');
+    }, () => {
+      this.setState({ showError: true });
+    });
   }
 
   render () {
@@ -81,7 +84,7 @@ export default class LoginForm extends Component {
               text={'Log In'}
             />
           </View>
-          { error && 
+          { showError && 
             <View 
               style={styles.error}
               ref={(ref) => this.errorRef = ref}

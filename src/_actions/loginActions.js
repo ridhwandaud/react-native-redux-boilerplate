@@ -8,14 +8,17 @@ const loginUserSuccess = (dispatch, user) => {
   });
 };
 
-export const loginUser = (email, password) => {
+export const loginUser = ({ email, password }, callback, callbackError) => {
   return (dispatch) => {
     dispatch({ type: types.LOGIN_USER });
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
+      .then(user => {
+        loginUserSuccess(dispatch, user);
+        callback && callback();
+      })
       .catch((error)=>{
-        console.log('login failed', error);
-        dispatch({ type: types.LOGIN_USER_FAIL })
+        dispatch({ type: types.LOGIN_USER_FAIL });
+        callbackError && callbackError();
       });
   };
 };
