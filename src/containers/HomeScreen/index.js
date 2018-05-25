@@ -12,12 +12,17 @@ class HomeScreen extends Component {
     logout: PropTypes.func
   }
 
+  logout = () => {
+    this.props.logoutUser();
+    this.props.navigation.navigate('Auth');
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <CustomButton
           text={'Logout'}
-          onPress={this.props.logout}
+          onPress={()=> this.logout()}
           buttonStyle={styles.button}
           textStyle={styles.buttonText}
         />

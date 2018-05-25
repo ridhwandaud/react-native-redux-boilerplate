@@ -35,7 +35,7 @@ export default class LoginForm extends Component {
     const { onLoginPress } = this.props;
     console.log('login', onLoginPress);
     onLoginPress(email,password);
-
+    this.props.navigation.navigate('App');
   }
 
   render () {

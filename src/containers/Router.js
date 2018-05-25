@@ -1,30 +1,19 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Start from './Start';
+import StartScreen from './Start';
+import HomeScreen from './HomeScreen';
+import { createSwitchNavigator, createStackNavigator } from 'react-navigation';
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Login')}
-        />
-      </View>
-    );
+const AppStack = createStackNavigator({ Home: HomeScreen });
+const AuthStack = createStackNavigator({ StartScreen: StartScreen });
+
+export default createSwitchNavigator(
+  {
+    Auth: AuthStack,
+    App: AppStack,
+  },
+  {
+    initialRouteName: 'Auth',
   }
-}
-
-export default StackNavigator(
-{
-  Start: {
-    screen: Start,
-  },
-  HomeScreen: {
-    screen: HomeScreen,
-  },
-},
-  { headerMode: 'screen' },
 );

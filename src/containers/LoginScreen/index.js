@@ -84,12 +84,10 @@ export default class AuthScreen extends Component {
   }
 
   render () {
-    const { isLoggedIn, isLoading, signup, login, error } = this.props;
+    const { isLoggedIn, isLoading, signup, login, error, ...props } = this.props;
     const { visibleForm } = this.state;
     // The following style is responsible of the "bounce-up from bottom" animation of the form
     const formStyle = (!visibleForm) ? { height: 0 } : { marginTop: 40 };
-
-    console.log(isLoggedIn);
 
     return (
       <View style={styles.container}>
@@ -123,6 +121,7 @@ export default class AuthScreen extends Component {
           )}
           {(visibleForm === 'LOGIN') && (
             <LoginForm
+              {...props}
               ref={(ref) => this.formRef = ref}
               onSignupLinkPress={() => this._setVisibleForm('SIGNUP')}
               onLoginPress={login}

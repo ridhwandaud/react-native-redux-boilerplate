@@ -1,7 +1,14 @@
-export const LOGIN_USER_SUCCESS = 'login_user_success';
-export const LOGIN_USER_FAIL = 'login_user_fail';
-export const LOGIN_USER = 'login_user';
-export const LOGOUT_USER_FAIL = 'logout_user_fail';
-export const LOGOUT_USER = 'logout_user';
-export const SIGNUP_USER = 'signup_user';
-export const SIGNUP_USER_SUCCESS = 'signup_user_success';
+const loginActionTypes = {
+	LOGIN_USER: 'LOGIN_USER',
+	LOGIN_USER_SUCCESS: 'LOGIN_USER_SUCCESS',
+	LOGIN_USER_FAIL: 'LOGIN_USER_FAIL',
+	LOGOUT_USER: 'LOGOUT_USER',
+	LOGOUT_USER_FAIL: 'LOGOUT_USER_FAIL',
+	SIGNUP_USER: 'SIGNUP_USER',
+	SIGNUP_USER_SUCCESS: 'SIGNUP_USER_SUCCESS',
+};
+
+
+export default {
+	...loginActionTypes,
+};

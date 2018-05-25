@@ -11,17 +11,16 @@ class Start extends Component{
    	 	header: null,
   	}
 
+  	componentWillMount(){
+  		const { login } = this.props;
+  		this.props.navigation.navigate(login.isLoggedIn ? 'App' : 'Auth');
+  	}
+
 	render(){
-		const { login, loginUser, logoutUser, signupUser } = this.props;
-		if (login.isLoggedIn) {
-	      return (
-	        <HomeScreen
-	          logout={() => logoutUser()}
-	        />
-	      )
-	    } else {
+		const { login, loginUser, logoutUser, signupUser, ...props } = this.props;
 	      return (
 	        <AuthScreen
+	       	  {...props}
 	          login={loginUser}
 	          signup={signupUser}
 	          isLoading={login.loading}
@@ -30,7 +29,6 @@ class Start extends Component{
 	          onLoginAnimationCompleted={() => this.setState({ isAppReady: true })}
 	        />
 	      )
-	    }
 	}
 }
 
