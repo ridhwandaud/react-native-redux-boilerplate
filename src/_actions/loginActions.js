@@ -16,9 +16,10 @@ export const loginUser = ({ email, password }, callback, callbackError) => {
         loginUserSuccess(dispatch, user);
         callback && callback();
       })
-      .catch((error)=>{
+      .catch(error => {
+        console.log(error);
         dispatch({ type: types.LOGIN_USER_FAIL });
-        callbackError && callbackError();
+        callbackError && callbackError(error);
       });
   };
 };

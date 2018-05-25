@@ -18,6 +18,7 @@ export default class LoginForm extends Component {
     email: '',
     password: '',
     showError: false,
+    errorMessage: '',
   }
 
   hideForm = async () => {
@@ -36,13 +37,13 @@ export default class LoginForm extends Component {
     const { onLoginPress } = this.props;
     onLoginPress({ email,password }, () => {
       this.props.navigation.navigate('App');
-    }, () => {
-      this.setState({ showError: true });
+    }, (errorMessage) => {
+      this.setState({ showError: true, errorMessage });
     });
   }
 
   render () {
-    const { email, password, showError } = this.state
+    const { email, password, showError, errorMessage } = this.state
     const { isLoading, onSignupLinkPress, onLoginPress, error } = this.props
     const isValid = email !== '' && password !== '';
     return (
@@ -90,7 +91,7 @@ export default class LoginForm extends Component {
               ref={(ref) => this.errorRef = ref}
             >
               <Text style={styles.errorText}>
-                We do not recognize the email or password
+                {errorMessage.message}
               </Text>  
             </View>
           }
@@ -140,7 +141,7 @@ const styles = StyleSheet.create({
   error: {
     marginTop: 10,
     backgroundColor:'#ef5350',
-    alignSelf: 'center',
+    alignSelf: 'stretch',
     padding: 10,
   },
   errorText: {
