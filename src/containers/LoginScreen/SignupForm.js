@@ -17,7 +17,9 @@ export default class SignupForm extends Component {
   state = {
     email: '',
     password: '',
-    fullName: ''
+    fullName: '',
+    showError: false,
+    errorMessage: '',
   }
 
   hideForm = async () => {
@@ -33,14 +35,15 @@ export default class SignupForm extends Component {
   signup = () => {
     const { email, password, fullName } = this.state;
     const { onSignupPress } = this.props;
-    console.log(email);
-    console.log(password);
-    console.log('signup', onSignupPress);
-    onSignupPress(email,password,fullName);
+    onSignupPress({ email,password,fullName }, () => {
+      this.props.navigation.navigate('App');
+    }, (errorMessage) => {
+      this.setState({ showError: true, errorMessage });
+    });
   }
 
   render () {
-    const { email, password, fullName } = this.state
+    const { email, password, fullName, showError, errorMessage } = this.state
     const { isLoading, onLoginLinkPress, onSignupPress } = this.props
     const isValid = email !== '' && password !== '' && fullName !== ''
     return (
@@ -92,6 +95,16 @@ export default class SignupForm extends Component {
               text={'Create Account'}
             />
           </View>
+          { showError && 
+            <View 
+              style={styles.error}
+              ref={(ref) => this.errorRef = ref}
+            >
+              <Text style={styles.errorText}>
+                {errorMessage.message}
+              </Text>  
+            </View>
+          }
           <Text
             ref={(ref) => this.linkRef = ref}
             style={styles.loginLink}
@@ -116,7 +129,7 @@ const styles = StyleSheet.create({
     marginTop: 20
   },
   footer: {
-    height: 100,
+    height: 150,
     justifyContent: 'center'
   },
   createAccountButton: {
@@ -134,5 +147,14 @@ const styles = StyleSheet.create({
     color: 'rgba(255,255,255,0.6)',
     alignSelf: 'center',
     padding: 20
+  },
+  error: {
+    marginTop: 10,
+    backgroundColor:'#ef5350',
+    alignSelf: 'stretch',
+    padding: 10,
+  },
+  errorText: {
+    color: 'white',
   }
 })

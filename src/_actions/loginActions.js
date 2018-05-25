@@ -17,20 +17,23 @@ export const loginUser = ({ email, password }, callback, callbackError) => {
         callback && callback();
       })
       .catch(error => {
-        console.log(error);
         dispatch({ type: types.LOGIN_USER_FAIL });
         callbackError && callbackError(error);
       });
   };
 };
 
-export const signupUser = (email,password,fullname) => {
+export const signupUser = ({ email,password,fullname }, callback, callbackError) => {
   return (dispatch) => {
     dispatch({ type: types.SIGNUP_USER });
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
+      .then(user => {
+        loginUserSuccess(dispatch, user);
+        callback && callback();
+      })
       .catch((error)=>{
-        dispatch({ type: types.LOGIN_USER_FAIL })
+        dispatch({ type: types.LOGIN_USER_FAIL });
+        callbackError && callbackError(error);
       });
   };
 };

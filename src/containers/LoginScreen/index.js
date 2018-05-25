@@ -112,6 +112,7 @@ export default class AuthScreen extends Component {
         >
           {(visibleForm === 'SIGNUP') && (
             <SignupForm
+              {...props}
               ref={(ref) => this.formRef = ref}
               onLoginLinkPress={() => this._setVisibleForm('LOGIN')}
               onSignupPress={signup}
