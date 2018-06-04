@@ -26,8 +26,7 @@ export default class LoginForm extends Component {
       await Promise.all([
         this.buttonRef.zoomOut(200),
         this.formRef.fadeOut(300),
-        this.linkRef.fadeOut(300),
-        this.errorRef.fadeOut(350)
+        this.linkRef.fadeOut(300)
       ])
     }
   }

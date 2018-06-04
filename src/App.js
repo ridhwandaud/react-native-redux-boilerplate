@@ -17,20 +17,22 @@ class App extends Component {
 
   componentWillMount() {
     const { store } = this.state;
-    console.log('WHITELISTED_REDUCER', WHITELISTED_REDUCER);
     persistStore(store, { storage: AsyncStorage, whitelist: WHITELISTED_REDUCER }, () => {
       this.setState({ isHydrated: true });
     });
 
     const config = {
-      apiKey: 'AIzaSyAKVZr3v2TePkF3kDZ0-Obr_ltzPHkBGDE',
-      authDomain: 'manager-154fc.firebaseapp.com',
-      databaseURL: 'https://manager-154fc.firebaseio.com',
-      projectId: 'manager-154fc',
-      storageBucket: 'manager-154fc.appspot.com',
-      messagingSenderId: '492235088441'
+      // Change to your own firebase
+      apiKey: "XXXXXXXX",
+      authDomain: "XXXXXXXX",
+      databaseURL: "XXXXXXXX",
+      projectId: "XXXXXXXX",
+      storageBucket: "",
+      messagingSenderId: "XXXXXXXX"
     };
-    firebase.initializeApp(config);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config);
+    }
   }
   render() {
     const { store, isHydrated } = this.state;
