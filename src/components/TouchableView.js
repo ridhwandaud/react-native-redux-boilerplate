@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Platform, View, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+import { Platform, View, TouchableNativeFeedback, TouchableOpacity, ViewPropTypes } from 'react-native';
 
 const IS_ANDROID = Platform.OS === 'android'
 const IS_RIPPLE_EFFECT_SUPPORTED = Platform.Version >= 21 && IS_ANDROID
@@ -26,7 +26,7 @@ TouchableView.propTypes = {
   isRippleDisabled: PropTypes.bool,
   rippleColor: PropTypes.string,
   children: PropTypes.any,
-  style: View.propTypes.style
+  style: ViewPropTypes.style
 }
 
 TouchableView.defaultProps = {
